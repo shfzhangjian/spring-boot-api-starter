@@ -3,16 +3,16 @@ spring:
   datasource:
     druid:
       first:  #数据源1
-        driver-class-name: oracle.jdbc.driver.OracleDriver
-        type: com.alibaba.druid.pool.xa.DruidXADataSource
-        url: jdbc:oracle:thin:@41719cf979.qicp.vip:/itpm
+        driver-class-name: oracle.jdbc.OracleDriver
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:oracle:thin:@41719cf979.qicp.vip:25036/itpm
         #jdbc:mysql://localhost:3306/minhow_first?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&characterEncoding=utf8
         username: njdtpmis_0301
         password: luckserver
         #初始化时建立物理连接的个数
         initial-size: 5
         #池中最大连接数
-        max-active: 20
+        max-active: 5
         #最小空闲连接
         min-idle: 1
         #获取连接时最大等待时间，单位毫秒

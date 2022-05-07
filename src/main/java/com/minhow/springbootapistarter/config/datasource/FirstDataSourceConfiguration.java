@@ -1,5 +1,6 @@
 package com.minhow.springbootapistarter.config.datasource;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.xa.DruidXADataSource;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.minhow.springbootapistarter.common.constant.DBConstants;
@@ -37,10 +38,12 @@ public class FirstDataSourceConfiguration {
     @Bean(DBConstants.FIRST_DATA_SOURCE)
     public DataSource firstDataSource() {
 //        使用Druid的分布式驱动，暂时发现不支持MySql8以上的版本
-//        DruidXADataSource druidXADataSource = new DruidXADataSource();
-//        BeanUtils.copyProperties(firstDataSourceProperties, druidXADataSource);
+        DruidDataSource druidXADataSource = new DruidDataSource();
+        BeanUtils.copyProperties(firstDataSourceProperties, druidXADataSource);
 
+        return druidXADataSource;
         //使用mysql的分布式驱动，支持MySql5.*、MySql8.* 以上版本
+/*
         MysqlXADataSource mysqlXaDataSource = new MysqlXADataSource();
         mysqlXaDataSource.setUrl(firstDataSourceProperties.getUrl());
         mysqlXaDataSource.setPassword(firstDataSourceProperties.getPassword());
@@ -58,6 +61,8 @@ public class FirstDataSourceConfiguration {
         xaDataSource.setTestQuery(firstDataSourceProperties.getValidationQuery());
 
         return xaDataSource;
+
+ */
     }
 
     /**

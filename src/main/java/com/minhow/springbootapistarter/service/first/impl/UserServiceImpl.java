@@ -30,14 +30,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result login(LoginDTO loginDTO) {
         User user = this.lambdaQuery()
-                .select(User::getId, User::getName)
+                .select(User::getId, User::getName, User::getSsecret)
                 .eq(User::getName, loginDTO.getName())
                 .one();
 
         if (user == null) {
-            return Result.fail(4001, "用户不存在！");
+            return Result.fail(4001, "服务器不存在！");
         }
-
+        if (user.getSsecret().equals(loginDTO.getPassword())==false) {
+            return Result.fail(4001, "密码错误！！");
+        }
         //省略业务逻辑...
 
         Map<String, Object> tokenData = new HashMap<>(2);

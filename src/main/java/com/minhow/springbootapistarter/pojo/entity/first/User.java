@@ -1,5 +1,6 @@
 package com.minhow.springbootapistarter.pojo.entity.first;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -25,24 +26,25 @@ public class User implements Serializable {
     private static final long serialVersionUID=1L;
 
     @TableId(value = "indocno", type = IdType.AUTO)
+    @TableField(value = "indocno" )
     private Integer id;
 
     /**
      * 用户名
      */
-    @TableId(value = "scode")
+    @TableField(value = "scode")
     private String name;
 
     /**
      * 密码
      */
-    @TableId(value = "ssecret")
-    private String password;
+    @TableField(value = "ssecret")
+    private String ssecret;
 
     /**
      * 客户数
      */
-    @TableId(value = "istate")
+    @TableField(value = "istate")
     private Integer customerNum;
 
 
