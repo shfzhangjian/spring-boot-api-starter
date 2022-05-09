@@ -20,4 +20,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     Result login(LoginDTO loginDTO);
+
+    User getServerInfo(Integer id );
 }

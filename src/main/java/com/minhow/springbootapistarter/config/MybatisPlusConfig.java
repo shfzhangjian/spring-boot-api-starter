@@ -1,6 +1,13 @@
 package com.minhow.springbootapistarter.config;
 
+import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.incrementer.IKeyGenerator;
+import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
+import com.baomidou.mybatisplus.extension.incrementer.OracleKeyGenerator;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,13 +18,34 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class MybatisPlusConfig {
+
+    /**
+     * Sequence主键自增
+     */
+    @Bean
+    public IKeyGenerator keyGenerator() {
+        return new OracleKeyGenerator();
+    }
+
+    @Bean
+    public OracleKeyGenerator oracleKeyGenerator() {
+        return new OracleKeyGenerator();
+    }
+
     /**
      * 分页插件
      */
     @Bean
-    public PaginationInterceptor paginationInterceptorMysql() {
-        PaginationInterceptor page = new PaginationInterceptor();
-        page.setDialectType("oracle");
-        return page;
+    public PaginationInterceptor paginationInterceptor() {
+        return new PaginationInterceptor();
     }
+
+    /**
+     * 乐观锁插件
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
+
 }

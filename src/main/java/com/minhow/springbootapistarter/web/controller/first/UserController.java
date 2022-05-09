@@ -18,7 +18,7 @@ import javax.validation.Valid;
  * @since 2019-10-05
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/auth")
 public class UserController {
     @Autowired
     private UserService userService;

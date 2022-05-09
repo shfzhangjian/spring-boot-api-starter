@@ -28,7 +28,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(new CORSInterceptor()).addPathPatterns("/**");
         //token拦截配置
         registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/users/login")
+                .excludePathPatterns("/auth/login")
                 .excludePathPatterns("/swagger-ui.html/**")
                 .excludePathPatterns("/webjars/**");
     }

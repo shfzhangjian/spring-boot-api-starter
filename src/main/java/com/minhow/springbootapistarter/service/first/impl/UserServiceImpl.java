@@ -29,9 +29,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private JWTUtil jwtUtil;
     @Override
     public Result login(LoginDTO loginDTO) {
+
         User user = this.lambdaQuery()
-                .select(User::getId, User::getName, User::getSsecret)
-                .eq(User::getName, loginDTO.getName())
+                .select(User::getId, User::getScode,User::getSname, User::getSsecret)
+                .eq(User::getScode, loginDTO.getName())
                 .one();
 
         if (user == null) {
@@ -50,5 +51,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         tokenInfoVO.setToken(token);
 
         return Result.ok(tokenInfoVO);
+    }
+
+    @Override
+    public User getServerInfo(Integer id) {
+        User user = this.getById(id);
+        return user;
     }
 }
